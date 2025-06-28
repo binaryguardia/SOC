@@ -1,2 +1,2 @@
 # SOC
-## SEcurity Operation Center
+## Security Operation Center
