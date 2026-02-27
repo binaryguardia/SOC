@@ -409,6 +409,7 @@ Accessible through Web Inspector (developer mode)
 Visible in device logs via Console / Xcode
 
 ## **Android Logs**
+---
 To check logs you need to connect your android with your system via adb, foe that follow this [guide](https://github.com/binaryguardia/Cyber-Tips/tree/main/Android-ADB).
 ---
 
