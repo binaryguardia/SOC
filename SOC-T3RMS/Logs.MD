@@ -12,7 +12,7 @@ Logs are used for monitoring, troubleshooting, auditing, and incident investigat
 
 ## Types of logs
 
-### * **Linux**
+### **Linux**
 ---
 
 ## 1️⃣ System Logs
@@ -141,7 +141,7 @@ Logs are used for monitoring, troubleshooting, auditing, and incident investigat
 
 * `/var/log/fail2ban.log`
 
-### * **Windows**
+### **Windows**
 ---
 
 ## 1️⃣ Security Logs
@@ -277,4 +277,241 @@ Security Event Log (Object Access events)
 ## 1️⃣8️⃣ Print Service Logs
 
 `Microsoft-Windows-PrintService%4Operational.evtx`
+
+## **macOS Logs**
+
+---
+
+### 1️⃣ Unified System Logs
+
+View with:
+`log show`
+Stored in:
+`/var/db/diagnostics/`
+`/var/db/uuidtext/`
+
+---
+
+### 2️⃣ System Logs
+
+`/var/log/system.log`
+
+---
+
+### 3️⃣ Authentication Logs
+
+`/var/log/system.log`
+(SSH, sudo, login events)
+
+---
+
+### 4️⃣ Install Logs
+
+`/var/log/install.log`
+
+---
+
+### 5️⃣ Firewall Logs
+
+Application Firewall:
+`/var/log/appfirewall.log`
+
+Packet Filter (pf):
+`/var/log/pf.log` (if enabled)
+
+---
+
+### 6️⃣ Audit Logs
+
+`/var/audit/`
+
+---
+
+### 7️⃣ Wi-Fi / Network Logs
+
+`/var/log/system.log`
+Unified logs via `log show`
+
+---
+
+### 8️⃣ Crash Reports
+
+`/Library/Logs/DiagnosticReports/`
+`~/Library/Logs/DiagnosticReports/`
+
+---
+
+### 9️⃣ Application Logs
+
+`~/Library/Logs/`
+
+---
+
+### 🔟 Endpoint Security / XProtect
+
+`/var/log/system.log`
+`/Library/Apple/System/Library/CoreServices/XProtect.bundle/`
+
+---
+
+---
+
+## **iOS Logs**
+
+*(Direct file access not normally available without jailbreak)*
+
+---
+
+### 1️⃣ System & Device Logs
+
+Access via:
+
+* macOS Console app
+* Xcode Devices & Simulators
+
+---
+
+### 2️⃣ Crash Logs
+
+Synced via Finder (macOS)
+Stored on Mac at:
+`~/Library/Logs/CrashReporter/MobileDevice/<Device_Name>/`
+
+---
+
+### 3️⃣ Analytics Logs
+
+On device:
+Settings → Privacy & Security → Analytics & Improvements
+
+---
+
+### 4️⃣ Network / Wi-Fi Logs
+
+Accessible via configuration profiles (MDM environments)
+
+---
+
+### 5️⃣ Mobile Device Management (MDM) Logs
+
+Available through enterprise MDM solutions
+
+---
+
+### 6️⃣ Safari Web Logs
+
+Accessible through Web Inspector (developer mode)
+
+---
+
+### 7️⃣ Security & Lock Events
+
+Visible in device logs via Console / Xcode
+
+## **Android Logs**
+To check logs you need to connect your android with your system via adb, foe that follow this (guide)[https://github.com/binaryguardia/Cyber-Tips/tree/main/Android-ADB].
+---
+
+### 1️⃣ Logcat (Main System Logs)
+
+Access via:
+`adb logcat`
+
+Stored in memory (not persistent by default)
+
+---
+
+### 2️⃣ System Logs
+
+`/data/system/`
+`/system/`
+
+---
+
+### 3️⃣ Kernel Logs
+
+View with:
+`adb shell dmesg`
+or
+`adb shell cat /proc/kmsg`
+
+---
+
+### 4️⃣ Event Logs
+
+Access via:
+`adb logcat -b events`
+
+---
+
+### 5️⃣ Radio / Telephony Logs
+
+`adb logcat -b radio`
+
+---
+
+### 6️⃣ Crash Logs (App Crashes / Tombstones)
+
+`/data/tombstones/`
+
+ANR (App Not Responding):
+`/data/anr/traces.txt`
+
+---
+
+### 7️⃣ Application Logs
+
+`/data/data/<package_name>/`
+
+---
+
+### 8️⃣ Security Logs (Enterprise / MDM Devices)
+
+Accessible via Device Policy Manager API
+Enterprise logging only
+
+---
+
+### 9️⃣ Audit Logs (SELinux)
+
+`adb shell dmesg | grep avc`
+SELinux enforcement logs
+
+---
+
+### 🔟 Battery & Usage Logs
+
+`adb shell dumpsys batterystats`
+`adb shell dumpsys usagestats`
+
+---
+
+### 1️⃣1️⃣ Network Logs
+
+`adb shell dumpsys connectivity`
+`adb shell netstat`
+
+---
+
+### 1️⃣2️⃣ Wi-Fi Logs
+
+`adb shell dumpsys wifi`
+
+---
+
+### 1️⃣3️⃣ Bluetooth Logs
+
+`adb shell dumpsys bluetooth_manager`
+
+---
+
+### 1️⃣4️⃣ DropBox System Logs (Android Internal Event Store)
+
+`adb shell dumpsys dropbox`
+
+---
+
+### 1️⃣5️⃣ Package Manager Logs
+
+`adb shell dumpsys package`
 
