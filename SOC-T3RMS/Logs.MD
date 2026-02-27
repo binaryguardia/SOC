@@ -12,7 +12,7 @@ Logs are used for monitoring, troubleshooting, auditing, and incident investigat
 
 ## Types of logs
 
-### Linux
+### * **Linux**
 ---
 
 ## 1️⃣ System Logs
@@ -141,7 +141,7 @@ Logs are used for monitoring, troubleshooting, auditing, and incident investigat
 
 * `/var/log/fail2ban.log`
 
-### Windows
+### * **Windows**
 ---
 
 ## 1️⃣ Security Logs
