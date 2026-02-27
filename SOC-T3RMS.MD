@@ -25,3 +25,23 @@ Managing security incidents in cloud environments.
 
 ### Insider Threat Response
 Handling incidents caused by internal employees or contractors.
+
+## Steps of Incident Response (Standard 6 Phases)
+
+### Preparation
+Establish policies, tools, team, and procedures before an incident occurs.
+
+### Identification
+Detect and determine whether a security incident has occurred.
+
+### Containment
+Limit the spread and impact of the incident.
+
+### Eradication
+Remove the root cause (malware, attacker access, vulnerabilities).
+
+### Recovery
+Restore systems and return to normal operations safely.
+
+### Lessons Learned
+Document the incident and improve security controls to prevent recurrence.
