@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proxy & VPN Services — Cybercrime Research Report | India</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap');
+
+  :root {
+    --bg: #0c0f14;
+    --surface: #141820;
+    --surface2: #1c2230;
+    --border: #2a3347;
+    --accent: #e85d26;
+    --accent2: #f5a623;
+    --text: #d6dde8;
+    --text-muted: #7a8899;
+    --text-dim: #3d4f63;
+    --white: #f0f4fa;
+    --danger: #e8264b;
+    --green: #26b583;
+    --blue: #2688e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .doc-header {
+    background: linear-gradient(135deg, #0c0f14 0%, #141a28 60%, #1a1208 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 48px 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,93,38,0.08) 0%, transparent 70%);
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,93,38,0.12);
+    border: 1px solid rgba(232,93,38,0.4);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .header-badge::before { content: '▶'; font-size: 8px; }
+  .doc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    max-width: 820px;
+    margin-bottom: 14px;
+  }
+  .doc-title span { color: var(--accent); }
+  .doc-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 680px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-size: 9px; }
+  .meta-val { color: var(--text); }
+
+  /* NAV */
+  .toc-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .toc-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .toc-link:hover { color: var(--accent); border-color: var(--accent); background: rgba(232,93,38,0.06); }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 48px 60px 80px; }
+
+  /* SECTION */
+  .section { margin-bottom: 60px; }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(232,93,38,0.1);
+    border: 1px solid rgba(232,93,38,0.3);
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* COMPANY TABLE */
+  .company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+  }
+  .company-table th {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  .company-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 13px;
+  }
+  .company-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .company-name {
+    font-weight: 600;
+    color: var(--white);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .company-url {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .company-url:hover { text-decoration: underline; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    margin: 2px 2px 0 0;
+  }
+  .tag-proxy { background: rgba(38,136,232,0.15); color: #6ab4f5; border: 1px solid rgba(38,136,232,0.3); }
+  .tag-vpn { background: rgba(38,181,131,0.15); color: #6adbb2; border: 1px solid rgba(38,181,131,0.3); }
+  .tag-dc { background: rgba(245,166,35,0.12); color: #f5c76a; border: 1px solid rgba(245,166,35,0.3); }
+  .tag-res { background: rgba(232,38,75,0.12); color: #f57ea0; border: 1px solid rgba(232,38,75,0.3); }
+
+  .flag { font-size: 16px; margin-right: 4px; }
+  .hq-text { font-size: 12px; color: var(--text); }
+  .hq-detail { font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; }
+
+  /* COMPANY CARDS */
+  .company-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .company-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .company-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+  .card-name {
+    font-weight: 700;
+    color: var(--white);
+    font-size: 15px;
+  }
+  .card-country {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    background: var(--surface2);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .card-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+  .card-label { color: var(--text-dim); width: 90px; flex-shrink: 0; }
+  .card-value { color: var(--text); flex: 1; }
+  .card-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .ref-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .ref-link:hover { border-color: var(--blue); }
+
+  /* STEP BOX */
+  .step-list { counter-reset: step; display: flex; flex-direction: column; gap: 0; }
+  .step-item {
+    counter-increment: step;
+    display: flex;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(232,93,38,0.08);
+    border: 1px solid rgba(232,93,38,0.25);
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-num::before { content: counter(step, decimal-leading-zero); }
+  .step-content { flex: 1; }
+  .step-title { font-weight: 600; color: var(--white); font-size: 14px; margin-bottom: 6px; }
+  .step-desc { color: var(--text); font-size: 13px; }
+  .step-tech {
+    margin-top: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    padding: 10px 14px;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+    border-radius: 0 2px 2px 0;
+  }
+  .step-tech strong { color: var(--accent2); }
+
+  /* ALERT BOX */
+  .alert-box {
+    background: rgba(232,38,75,0.06);
+    border: 1px solid rgba(232,38,75,0.3);
+    border-left: 4px solid var(--danger);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 20px 0;
+  }
+  .alert-box .alert-title { font-weight: 700; color: #f57ea0; margin-bottom: 6px; font-size: 13px; }
+  .alert-box p { font-size: 13px; color: var(--text); }
+
+  .info-box {
+    background: rgba(38,136,232,0.06);
+    border: 1px solid rgba(38,136,232,0.3);
+    border-left: 4px solid var(--blue);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 20px 0;
+  }
+  .info-box p { font-size: 13px; color: var(--text); }
+
+  /* STAT GRID */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 11px; color: var(--text-muted); }
+
+  /* REMEDIES */
+  .remedy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .remedy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 4px;
+  }
+  .remedy-icon { font-size: 20px; margin-bottom: 8px; }
+  .remedy-title { font-weight: 700; color: var(--white); margin-bottom: 6px; font-size: 13px; }
+  .remedy-body { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* REF TABLE */
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .ref-table th {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-table td { padding: 10px 12px; border-bottom: 1px solid rgba(42,51,71,0.5); vertical-align: top; }
+  .ref-table a { color: var(--blue); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 11px; word-break: break-all; }
+  .ref-table a:hover { text-decoration: underline; }
+  .ref-org { color: var(--white); font-weight: 500; }
+
+  /* FOOTER */
+  .doc-footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-text { font-size: 11px; color: var(--text-muted); }
+  .disclaimer {
+    background: rgba(245,166,35,0.06);
+    border: 1px solid rgba(245,166,35,0.25);
+    padding: 16px 20px;
+    margin: 32px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .disclaimer strong { color: var(--accent2); }
+
+  h3 { color: var(--white); font-size: 15px; margin: 24px 0 10px; }
+  p { margin-bottom: 12px; font-size: 13px; color: var(--text); }
+  ul, ol { padding-left: 20px; margin-bottom: 12px; }
+  li { font-size: 13px; color: var(--text); margin-bottom: 5px; }
+
+  @media (max-width: 768px) {
+    .doc-header, .main, .toc-nav, .doc-footer { padding-left: 20px; padding-right: 20px; }
+    .doc-title { font-size: 26px; }
+    .company-cards { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .remedy-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="doc-header">
+  <div class="header-badge">Classified Research Document — Law Enforcement Reference</div>
+  <h1 class="doc-title">Proxy & VPN Service Providers:<br><span>Cybercrime Abuse & India Threat Landscape</span></h1>
+  <p class="doc-subtitle">A comprehensive intelligence brief on 13 proxy/VPN service companies — their corporate profiles, server infrastructure, services offered, and how transnational fraudsters exploit them to target Indian citizens and launder proceeds via mule accounts to China, Cambodia, and beyond.</p>
+  <div class="header-meta">
+    <div class="meta-item"><span class="meta-label">Report Date</span><span class="meta-val">April 2026</span></div>
+    <div class="meta-item"><span class="meta-label">Classification</span><span class="meta-val">Research / Open Source Intelligence</span></div>
+    <div class="meta-item"><span class="meta-label">Audience</span><span class="meta-val">Government Authorities / Law Enforcement / Cybercrime Units</span></div>
+    <div class="meta-item"><span class="meta-label">Companies Profiled</span><span class="meta-val">13</span></div>
+    <div class="meta-item"><span class="meta-label">Sources</span><span class="meta-val">MHA/I4C, CBI, Crunchbase, LinkedIn, OSINT</span></div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="toc-nav">
+  <a href="#s1" class="toc-link">§1 Company Profiles</a>
+  <a href="#s2" class="toc-link">§2 Services Overview</a>
+  <a href="#s3" class="toc-link">§3 Infrastructure & Servers</a>
+  <a href="#s4" class="toc-link">§4 Fraud Mechanics</a>
+  <a href="#s5" class="toc-link">§5 Step-by-Step Scam Flow</a>
+  <a href="#s6" class="toc-link">§6 Money Trail</a>
+  <a href="#s7" class="toc-link">§7 India Statistics</a>
+  <a href="#s8" class="toc-link">§8 Countermeasures</a>
+  <a href="#s9" class="toc-link">§9 References</a>
+</nav>
+
+<main class="main">
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong>⚠ Research Purpose Notice:</strong> This document is prepared solely for law enforcement research, government authorities, and cybercrime prevention purposes. All information is sourced from publicly available registries, official government advisories (MHA/I4C/CBI), and open-source business intelligence. The proxy and VPN services profiled herein offer both legitimate commercial uses (web scraping, data research) and are documented as being abused by criminal actors. The inclusion of these companies in this report does not imply that the companies themselves are criminal enterprises unless specifically noted in official law enforcement records.
+</div>
+
+<!-- SECTION 1: COMPANY PROFILES -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">§ 01</span>
+    <div>
+      <h2 class="section-title">Company Profiles — Corporate Identity & Registration</h2>
+      <p class="section-desc">Headquarters, registration details, founders, and corporate structure for all 13 identified service providers</p>
+    </div>
+  </div>
+
+  <div class="company-cards">
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🌐 711Proxy</div>
+        <div class="card-country"><span class="flag">🇭🇰</span> Hong Kong / China</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://www.711proxy.com" class="ref-link" target="_blank">711proxy.com</a></div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">RM A07, 1701-02 New Trend Centre, 704 Prince Edward Rd East, San Po Kong, Hong Kong</div></div>
+      <div class="card-row"><div class="card-label">Founded</div><div class="card-value">~2022–2023 (relatively new)</div></div>
+      <div class="card-row"><div class="card-label">Structure</div><div class="card-value">Privately held, Chinese-linked ownership</div></div>
+      <div class="card-row"><div class="card-label">IP Pool</div><div class="card-value">100M+ residential IPs, 50+ data centers</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">Datacenter Proxy</span>
+        <span class="tag tag-proxy">SOCKS5</span>
+      </div>
+      <a href="https://www.trustpilot.com/review/711proxy.com" class="ref-link" target="_blank">→ Trustpilot Verified Reviews</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">⚡ FlashProxy</div>
+        <div class="card-country"><span class="flag">🌍</span> Unknown / Offshore</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value">flashproxy.com</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Registration details not publicly disclosed; associated with 711Proxy ecosystem per Crunchbase</div></div>
+      <div class="card-row"><div class="card-label">Founded</div><div class="card-value">Not publicly confirmed</div></div>
+      <div class="card-row"><div class="card-label">Note</div><div class="card-value">Listed alongside 711Proxy on Crunchbase; appears to be a sister brand or reseller network</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">Datacenter Proxy</span>
+      </div>
+      <a href="https://www.crunchbase.com/organization/711proxy" class="ref-link" target="_blank">→ Crunchbase Reference</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🔵 NetNut</div>
+        <div class="card-country"><span class="flag">🇮🇱</span> Israel (NASDAQ: ALAR)</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://netnut.io" class="ref-link" target="_blank">netnut.io</a></div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">HaArba'a St 30, Tel Aviv, Israel 6473926</div></div>
+      <div class="card-row"><div class="card-label">Founded</div><div class="card-value">2017</div></div>
+      <div class="card-row"><div class="card-label">Parent Co.</div><div class="card-value">Alarum Technologies Ltd. (acquired April 2019) — Listed on Nasdaq & TASE as ALAR</div></div>
+      <div class="card-row"><div class="card-label">CEO</div><div class="card-value">Daniel Shachar</div></div>
+      <div class="card-row"><div class="card-label">Revenue</div><div class="card-value">$10M–$50M (estimated)</div></div>
+      <div class="card-row"><div class="card-label">IP Pool</div><div class="card-value">85M+ residential, 5M+ mobile IPs</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">ISP Direct Proxy</span>
+        <span class="tag tag-vpn">Mobile Proxy</span>
+      </div>
+      <a href="https://netnut.io/about/" class="ref-link" target="_blank">→ Official About Page</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🟠 ProxyScrape</div>
+        <div class="card-country"><span class="flag">🇧🇪</span> Belgium (EU)</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://proxyscrape.com" class="ref-link" target="_blank">proxyscrape.com</a></div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Brugstraat 18, Mechelen, Antwerpen, Belgium 2812</div></div>
+      <div class="card-row"><div class="card-label">Founded</div><div class="card-value">2018</div></div>
+      <div class="card-row"><div class="card-label">Founder/CEO</div><div class="card-value">Thibeau Maerevoet</div></div>
+      <div class="card-row"><div class="card-label">Employees</div><div class="card-value">~15 (small team)</div></div>
+      <div class="card-row"><div class="card-label">Customers</div><div class="card-value">37,000+ worldwide</div></div>
+      <div class="card-tags">
+        <span class="tag tag-dc">Datacenter Proxy</span>
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-proxy">Free Proxy Lists</span>
+      </div>
+      <a href="https://proxyscrape.com/about-us" class="ref-link" target="_blank">→ Official About Page</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🟣 Nstproxy</div>
+        <div class="card-country"><span class="flag">🇨🇳</span> China-linked</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://www.nstproxy.com" class="ref-link" target="_blank">nstproxy.com</a></div></div>
+      <div class="card-row"><div class="card-label">Founded</div><div class="card-value">2023</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Corporate address not publicly disclosed; operational base appears China/HK-linked</div></div>
+      <div class="card-row"><div class="card-label">Customers</div><div class="card-value">1,000+ enterprise clients (claimed)</div></div>
+      <div class="card-row"><div class="card-label">IP Pool</div><div class="card-value">110M+ active IPs, 195 countries, 8,000+ cities</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">IPv6 Proxy</span>
+        <span class="tag tag-proxy">Mobile Proxy</span>
+      </div>
+      <a href="https://www.trustpilot.com/review/nstproxy.com" class="ref-link" target="_blank">→ Trustpilot Profile</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">⚙️ Proxy-Seller</div>
+        <div class="card-country"><span class="flag">🇨🇾</span> Cyprus (Offshore)</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://proxy-seller.com" class="ref-link" target="_blank">proxy-seller.com</a></div></div>
+      <div class="card-row"><div class="card-label">LinkedIn</div><div class="card-value">Registered via LinkedIn as Cyprus entity</div></div>
+      <div class="card-row"><div class="card-label">Services</div><div class="card-value">Private Residential, ISP, IPv4/IPv6, and Mobile 4G/5G/LTE proxies from $0.75</div></div>
+      <div class="card-row"><div class="card-label">Note</div><div class="card-value">Accepts crypto payments; used for social media, gaming, scraping, crypto markets</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">IPv4/IPv6</span>
+        <span class="tag tag-proxy">Mobile 4G/5G</span>
+      </div>
+      <a href="https://cy.linkedin.com/company/proxyseller" class="ref-link" target="_blank">→ LinkedIn Profile</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">⚡ Lightning Proxies</div>
+        <div class="card-country"><span class="flag">🌍</span> Undisclosed</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://lightningproxies.net" class="ref-link" target="_blank">lightningproxies.net</a></div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Corporate registration not publicly disclosed; no verifiable legal entity address on record</div></div>
+      <div class="card-row"><div class="card-label">IP Pool</div><div class="card-value">20M+ residential, datacenter and IPv6 proxies</div></div>
+      <div class="card-row"><div class="card-label">Use Cases</div><div class="card-value">Web data extraction, scraping, monitoring</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">Datacenter Proxy</span>
+        <span class="tag tag-proxy">IPv6</span>
+      </div>
+      <a href="https://lightningproxies.net/about" class="ref-link" target="_blank">→ About Page</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🌍 Geonode</div>
+        <div class="card-country"><span class="flag">🇸🇬</span> Singapore</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://geonode.com" class="ref-link" target="_blank">geonode.com</a></div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Eu Tong Sen Street, Singapore (HQ)</div></div>
+      <div class="card-row"><div class="card-label">Employees</div><div class="card-value">~20 (mostly Filipino staff per LinkedIn)</div></div>
+      <div class="card-row"><div class="card-label">IP Partners</div><div class="card-value">Zenshield and Repocket (IP sourcing partners); proxies sourced via unused residential connections</div></div>
+      <div class="card-row"><div class="card-label">Coverage</div><div class="card-value">160+ countries, up to 30M IPs</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">Datacenter</span>
+        <span class="tag tag-proxy">Mobile Proxy</span>
+      </div>
+      <a href="https://geonode.com/" class="ref-link" target="_blank">→ Official Site</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">📡 IPPeak</div>
+        <div class="card-country"><span class="flag">🌍</span> Undisclosed</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value">ippeak.com (or similar)</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">No verified corporate registration found in public records; likely offshore-registered entity</div></div>
+      <div class="card-row"><div class="card-label">Services</div><div class="card-value">ISP and residential proxies; primarily marketed for scraping and geo-bypass</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">ISP Proxy</span>
+        <span class="tag tag-dc">Residential</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🔴 NaProxy</div>
+        <div class="card-country"><span class="flag">🌍</span> Asia-Pacific (Undisclosed)</div>
+      </div>
+      <div class="card-row"><div class="card-label">Services</div><div class="card-value">Residential and rotating proxies; marketed towards data collection, e-commerce automation</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">No verified public corporate registration on record</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-proxy">Rotating IPs</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🔵 SwiftProxy.io</div>
+        <div class="card-country"><span class="flag">🌍</span> Undisclosed</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://www.swiftproxy.net" class="ref-link" target="_blank">swiftproxy.net</a></div></div>
+      <div class="card-row"><div class="card-label">IP Pool</div><div class="card-value">80M+ residential IPs globally</div></div>
+      <div class="card-row"><div class="card-label">Services</div><div class="card-value">Web scraping at scale, data extraction; marketed for business intelligence</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Corporate registration not publicly verifiable</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-dc">Datacenter</span>
+      </div>
+      <a href="https://www.swiftproxy.net/" class="ref-link" target="_blank">→ Official Site</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🟡 Proxy4u</div>
+        <div class="card-country"><span class="flag">🌍</span> Undisclosed</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://proxy4u.com" class="ref-link" target="_blank">proxy4u.com</a></div></div>
+      <div class="card-row"><div class="card-label">Support</div><div class="card-value">support@proxy4u.com</div></div>
+      <div class="card-row"><div class="card-label">Services</div><div class="card-value">Residential, ISP, Datacenter, Mobile proxies with geo-targeting and IP rotation</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Not publicly registered; reviewed on Trustpilot, Reviews.io, Product Hunt</div></div>
+      <div class="card-tags">
+        <span class="tag tag-res">Residential Proxy</span>
+        <span class="tag tag-proxy">Mobile Proxy</span>
+        <span class="tag tag-dc">Datacenter</span>
+      </div>
+      <a href="https://proxy4u.com/" class="ref-link" target="_blank">→ Official Site</a>
+    </div>
+
+    <div class="company-card">
+      <div class="card-head">
+        <div class="card-name">🟢 ExpressVPN</div>
+        <div class="card-country"><span class="flag">🇻🇬</span> British Virgin Islands / Global</div>
+      </div>
+      <div class="card-row"><div class="card-label">Website</div><div class="card-value"><a href="https://www.expressvpn.com" class="ref-link" target="_blank">expressvpn.com</a></div></div>
+      <div class="card-row"><div class="card-label">Legal Entity</div><div class="card-value">Express Technologies Ltd. (subsidiary of Kape Technologies since 2021)</div></div>
+      <div class="card-row"><div class="card-label">Founded</div><div class="card-value">2009, by Peter Burchhardt & Dan Pomerantz (Wharton alumni)</div></div>
+      <div class="card-row"><div class="card-label">Parent Co.</div><div class="card-value">Kape Technologies plc (formerly Crossrider) — listed on AIM London Stock Exchange</div></div>
+      <div class="card-row"><div class="card-label">Reg. Address</div><div class="card-value">Road Town, Tortola, British Virgin Islands (privacy jurisdiction)</div></div>
+      <div class="card-row"><div class="card-label">Operations</div><div class="card-value">VPN servers in 105 countries; 3,000+ servers globally</div></div>
+      <div class="card-tags">
+        <span class="tag tag-vpn">VPN</span>
+        <span class="tag tag-proxy">No-Log Policy</span>
+        <span class="tag tag-dc">Global Servers</span>
+      </div>
+      <a href="https://en.wikipedia.org/wiki/ExpressVPN" class="ref-link" target="_blank">→ Wikipedia Entry</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 2: SERVICES -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">§ 02</span>
+    <div>
+      <h2 class="section-title">Services Offered — Proxy Types, VPN & Infrastructure</h2>
+      <p class="section-desc">What each category of service provides and how they differ technically</p>
+    </div>
+  </div>
+
+  <table class="company-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Residential Proxy</th>
+        <th>Datacenter Proxy</th>
+        <th>Mobile Proxy</th>
+        <th>VPN Service</th>
+        <th>ISP / Static IP</th>
+        <th>Free Proxy Lists</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="company-name">711Proxy</span></td><td>✅ 100M+</td><td>✅ 50+ DCs</td><td>—</td><td>—</td><td>✅ Static Residential</td><td>—</td></tr>
+      <tr><td><span class="company-name">FlashProxy</span></td><td>✅</td><td>✅</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><span class="company-name">NetNut</span></td><td>✅ 85M+</td><td>✅</td><td>✅ 5M+</td><td>—</td><td>✅ ISP Direct</td><td>—</td></tr>
+      <tr><td><span class="company-name">ProxyScrape</span></td><td>✅ 48M+</td><td>✅ 40K+</td><td>—</td><td>—</td><td>—</td><td>✅ Free HTTP/SOCKS</td></tr>
+      <tr><td><span class="company-name">Nstproxy</span></td><td>✅ 110M+</td><td>✅</td><td>✅</td><td>—</td><td>✅ ISP</td><td>—</td></tr>
+      <tr><td><span class="company-name">Proxy-Seller</span></td><td>✅</td><td>✅ IPv4/IPv6</td><td>✅ 4G/5G</td><td>—</td><td>✅ ISP</td><td>—</td></tr>
+      <tr><td><span class="company-name">Lightning Proxies</span></td><td>✅ 20M+</td><td>✅</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><span class="company-name">Geonode</span></td><td>✅ 30M</td><td>✅</td><td>✅</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td><span class="company-name">IPPeak</span></td><td>✅</td><td>—</td><td>—</td><td>—</td><td>✅ ISP</td><td>—</td></tr>
+      <tr><td><span class="company-name">NaProxy</span></td><td>✅</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><span class="company-name">SwiftProxy.io</span></td><td>✅ 80M+</td><td>✅</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><span class="company-name">Proxy4u</span></td><td>✅</td><td>✅</td><td>✅</td><td>—</td><td>✅ ISP</td><td>—</td></tr>
+      <tr><td><span class="company-name">ExpressVPN</span></td><td>—</td><td>—</td><td>—</td><td>✅ 3,000+ servers</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Service Type Definitions (Technical)</h3>
+  <p><strong style="color:var(--accent2)">Residential Proxies:</strong> IP addresses assigned to real home internet users (via ISP). Traffic appears to originate from a genuine household device. Extremely difficult to detect or block. Used by fraudsters to impersonate Indian users or bypass bank/UPI security layers.</p>
+  <p><strong style="color:var(--accent2)">Datacenter Proxies:</strong> IPs assigned from commercial data centers (AWS, Azure, Alibaba Cloud, etc.). Faster and cheaper but more detectable. Used for bulk phishing campaigns, credential stuffing, fake account creation.</p>
+  <p><strong style="color:var(--accent2)">Mobile Proxies:</strong> IP addresses from real mobile carrier networks (4G/5G). Assigned dynamically by telecom towers — shared with thousands of real users simultaneously. The hardest type to block without affecting legitimate users.</p>
+  <p><strong style="color:var(--accent2)">VPN (ExpressVPN):</strong> Encrypts all traffic through a single server. Used to mask origin location of calls and transactions. Fraudsters combine VPN + proxy for layered anonymization.</p>
+  <p><strong style="color:var(--accent2)">ISP Direct Proxies (NetNut):</strong> One-hop connectivity directly through Internet Service Providers — the most trusted and hardest to detect type of IP masking available commercially.</p>
+</section>
+
+<!-- SECTION 3: INFRASTRUCTURE -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">§ 03</span>
+    <div>
+      <h2 class="section-title">Physical & Virtual Server Infrastructure</h2>
+      <p class="section-desc">Where physical data centers are located vs. virtual/cloud regions used to route traffic</p>
+    </div>
+  </div>
+
+  <table class="company-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Physical DC Regions Known</th>
+        <th>Virtual/Cloud Coverage</th>
+        <th>India Presence</th>
+        <th>China / SE Asia Routing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="company-name">711Proxy</span><br><span style="font-size:10px;color:var(--text-muted)">HK-based</span></td>
+        <td>50+ DCs globally; Asia-Pacific, USA, Europe</td>
+        <td>200+ countries via residential peer network</td>
+        <td>✅ Indian IPs available</td>
+        <td>✅ Strong Asia routing incl. China, HK</td>
+      </tr>
+      <tr>
+        <td><span class="company-name">NetNut</span><br><span style="font-size:10px;color:var(--text-muted)">Tel Aviv, IL</span></td>
+        <td>ISP-peered — no standalone DC needed; 195 countries</td>
+        <td>One-hop ISP connectivity globally</td>
+        <td>✅ Yes</td>
+        <td>✅ SE Asia nodes available</td>
+      </tr>
+      <tr>
+        <td><span class="company-name">ProxyScrape</span><br><span style="font-size:10px;color:var(--text-muted)">Mechelen, BE</span></td>
+        <td>Belgium (primary); uses 3rd party DC infrastructure globally</td>
+        <td>Global; 120M rotating residential IPs</td>
+        <td>✅ Yes</td>
+        <td>Moderate</td>
+      </tr>
+      <tr>
+        <td><span class="company-name">Nstproxy</span><br><span style="font-size:10px;color:var(--text-muted)">China-linked</span></td>
+        <td>Undisclosed; Asia-heavy</td>
+        <td>195 countries, 8,000+ cities</td>
+        <td>✅ Yes</td>
+        <td>✅ Strong China / SE Asia coverage</td>
+      </tr>
+      <tr>
+        <td><span class="company-name">Proxy-Seller</span><br><span style="font-size:10px;color:var(--text-muted)">Cyprus</span></td>
+        <td>Uses cloud providers (undisclosed); Europe, NA, Asia</td>
+        <td>Residential + 4G/5G mobile globally</td>
+        <td>✅ Yes</td>
+        <td>✅ Asia/Pacific coverage</td>
+      </tr>
+      <tr>
+        <td><span class="company-name">Geonode</span><br><span style="font-size:10px;color:var(--text-muted)">Singapore</span></td>
+        <td>Singapore primary; global partner sourcing via Repocket/Zenshield</td>
+        <td>160+ countries</td>
+        <td>✅ Yes</td>
+        <td>✅ SE Asia heavy (SG, MY, TH, KH)</td>
+      </tr>
+      <tr>
+        <td><span class="company-name">ExpressVPN</span><br><span style="font-size:10px;color:var(--text-muted)">BVI / Kape Tech</span></td>
+        <td>3,000+ servers in 105 countries; major DCs in USA, UK, NL, SG, HK</td>
+        <td>Virtual server locations in all major markets</td>
+        <td>✅ India servers available</td>
+        <td>✅ HK, SG, JP nodes used by fraudsters</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box">
+    <div class="alert-title">⚠ Critical Infrastructure Risk for India</div>
+    <p>Multiple providers (711Proxy, Nstproxy, Geonode) have explicit India-based residential IP pools. This allows foreign-based fraudsters to route their internet traffic <em>through Indian home/mobile devices</em>, making their connection appear locally Indian to bank servers, UPI apps, and KYC systems — effectively bypassing geo-detection fraud controls entirely.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: FRAUD MECHANICS -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">§ 04</span>
+    <div>
+      <h2 class="section-title">How Fraudsters Abuse These Services Against Indian Users</h2>
+      <p class="section-desc">Documented exploitation patterns — linked to MHA/I4C/CBI official advisories</p>
+    </div>
+  </div>
+
+  <p>According to official data from India's Ministry of Home Affairs (MHA) and the Indian Cybercrime Coordination Centre (I4C), <strong style="color:var(--white)">approximately 45% of all cybercrime complaints originating in India in 2024 were traced to Southeast Asian countries</strong> — primarily Cambodia, Myanmar, and Laos — where Chinese-directed "scam compound" operations specifically target Indian citizens using VPN and proxy services to mask their digital origin.</p>
+
+  <h3>Key Fraud Types Using These Services</h3>
+
+  <table class="company-table">
+    <thead>
+      <tr>
+        <th>Fraud Type</th>
+        <th>How Proxies/VPN Are Used</th>
+        <th>Services Most Exploited</th>
+        <th>Reported Losses (2024)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--white)">Digital Arrest Scam</strong></td>
+        <td>VPN masks foreign call origin; residential proxy makes login appear Indian; fake video calls via proxy-masked IPs</td>
+        <td>ExpressVPN, Residential Proxies (711Proxy, Nstproxy)</td>
+        <td>₹1,616 Crore (63,481 cases)</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">Fake Investment / Stock Trading</strong></td>
+        <td>Proxy used to create Indian-looking fake trading portals; residential IPs bypass financial platform geo-checks</td>
+        <td>All residential proxy providers</td>
+        <td>₹4,636 Crore (2,28,094 complaints)</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">KYC/Aadhaar Fraud & Account Takeover</strong></td>
+        <td>Rotating proxies used to bypass OTP rate-limits; mobile proxies impersonate real Indian devices during auth</td>
+        <td>Mobile proxies (Proxy-Seller, Nstproxy)</td>
+        <td>Included in overall ₹11,333 Cr total</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">Mule Account Setup</strong></td>
+        <td>Proxies used to remotely control Indian bank accounts and fintech wallets without triggering geo-alerts</td>
+        <td>Static residential proxies (711Proxy, NetNut)</td>
+        <td>4,000+ mule accounts frozen daily (I4C)</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">Crypto Laundering</strong></td>
+        <td>VPN + proxy routes crypto wallet transactions through Indian residential IPs to avoid FATF tracing</td>
+        <td>ExpressVPN + residential proxies</td>
+        <td>₹5.5 Crore crypto laundered Mar–May 2024</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">SIM Box / VOIP Masking</strong></td>
+        <td>International calls routed through proxy nodes to appear as Indian mobile numbers</td>
+        <td>Mobile proxies (Proxy-Seller, Geonode)</td>
+        <td>7.81 lakh SIM cards blocked by GoI</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 5: STEP BY STEP -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">§ 05</span>
+    <div>
+      <h2 class="section-title">Step-by-Step: Complete Fraud Operation Flow</h2>
+      <p class="section-desc">How a scam targeting an Indian citizen is orchestrated from initial setup to final fund extraction — based on CBI Operation Chakra-V findings and I4C analysis</p>
+    </div>
+  </div>
+
+  <div class="step-list">
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Infrastructure Setup — Scam Compound in SE Asia</div>
+        <div class="step-desc">Criminal operators (Chinese-directed syndicates) establish "scam factories" in Cambodia, Myanmar, Laos, or Thailand. They recruit workers (including trafficked Indians) to operate as call center agents. The compound is equipped with computers, SIM farms, and internet routing via VPN + proxy services to mask all outbound traffic as Indian.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> ExpressVPN or similar VPN (masks country of origin) + Residential proxy (711Proxy, Nstproxy) configured to an Indian residential IP. Anti-detect browsers like Dolphin Anty or AdsPower integrated with proxy (explicitly marketed by 711Proxy)</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Acquiring Indian Infrastructure — SIM Cards & Mule Accounts</div>
+        <div class="step-desc">Agents in India are recruited via Telegram/Facebook with offers of ₹5,000–₹20,000 per account. They provide current/savings account credentials, debit cards, and pre-activated SIM cards. These are courier-shipped or remotely handed over. The I4C identifies ~4,000 new mule accounts daily. SIM cards have been seized being smuggled to Cambodia (198 SIM cards in one seizure).</div>
+        <div class="step-tech"><strong>Tech Used:</strong> Telegram bots for recruitment; India-based proxy IPs used to manage accounts without triggering location alerts; UPI apps (PhonePe, Paytm, GPay) registered under mule identity</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Setting Up Illegal Payment Gateways</div>
+        <div class="step-desc">Mule accounts are aggregated to form underground "Payment Gateway as a Service." Identified gateway brands in India include PeacePay, RTX Pay, PoccoPay, RPPay — all operated by foreign nationals. These accept deposits from fraud victims under the cover of fake investment platforms, stock trading apps, or gambling sites. Bulk payout facilities from banks are exploited to move funds rapidly.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> Static residential proxies (NetNut, 711Proxy) to give each mule account a consistent Indian IP address; SOCKS5 proxies tunnel all traffic securely; PayGateway APIs configured with Indian bank accounts</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Initial Contact with Victim — Digital Arrest / Investment Scam</div>
+        <div class="step-desc"><strong>Digital Arrest:</strong> Victim receives a WhatsApp/Skype call from someone posing as CBI/ED/Customs officer, claiming their phone/bank account is linked to "money laundering." The caller's video background shows a fake police station or courtroom. The call IP appears Indian (via residential proxy). Victim is placed under "virtual arrest" — told to stay on video call 24/7 and pay "bail" amounts. <br><br><strong>Investment Scam:</strong> Victim joins a WhatsApp group offering stock tips, then directed to a fake trading app (with Indian UI, Indian proxy IP on server) where initial deposits show "profits" before victim deposits large sums — then the platform vanishes.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> WhatsApp/Skype accounts registered behind proxies; VoIP calls routed through SIM box farms with Indian numbers; rotating residential proxies ensure each interaction looks like it originates from India; deepfake video tools layered for police-uniform appearances</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Funds Collection — Into Mule Accounts</div>
+        <div class="step-desc">Victim is directed to transfer money to "verification accounts" or "RBI-escrow accounts" — which are actually mule bank accounts. Funds may be split across 5–20 mule accounts simultaneously. A single case (Maharashtra, Dec 2025) involved ₹58.13 crore transferred across 20,000+ mule accounts in a 40-day period using a 13-layer laundering network. Speed is critical — funds are moved within 10–30 minutes of receipt to the next layer.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> Residential proxies allow remote control of Indian bank accounts without triggering geo-fraud alerts; automated scripts using proxy-rotating connections bulk-transfer between accounts; UPI payment layers used for speed</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Layering — Obfuscating the Money Trail</div>
+        <div class="step-desc">Funds rapidly cascade through multiple layers: Mule Account Layer 1 → Mule Account Layer 2 → Shell Company Accounts → Crypto Exchanges → Hawala Networks. Each "hop" uses a fresh proxy IP to avoid linking transactions. Some funds are withdrawn as cash from ATMs (I4C identified 18 ATM hotspots used for cash extraction). Cryptocurrency (primarily USDT/Bitcoin) is purchased using Indian accounts and sent abroad.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> VPN (ExpressVPN) + datacenter proxies for crypto exchange logins; mobile proxies for OTP bypass; ProxyScrape / rotating residential proxies to manage dozens of accounts simultaneously; TOR occasionally layered for additional anonymization</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">International Transfer — Money Exits India</div>
+        <div class="step-desc">Funds exit India through: (A) Cryptocurrency transfers to wallets in China/Cambodia/Dubai; (B) Hawala operators wiring funds through UAE, Hong Kong to final destinations; (C) Foreign ATM withdrawals using Indian mule debit cards — recorded in Dubai, Hong Kong, Bangkok, Russia. Once funds cross the border and convert to crypto or foreign currency, recovery becomes nearly impossible. Crypto wallets are created behind VPN to bypass KYC norms.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> VPN (ExpressVPN, NordVPN) to mask crypto wallet creation; residential proxies to bypass exchange KYC geo-checks; BTC/USDT sent to wallets controlled by Chinese crime syndicates; Hawala networks use proxy-masked messaging apps</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Funds Integration — Laundered Money Reaches Crime Bosses</div>
+        <div class="step-desc">Final funds arrive in accounts controlled by Chinese-linked organized crime networks operating out of Cambodia, Myanmar, or mainland China. Funds are "cleaned" through real estate purchases, shell businesses, or converted to physical gold/cash. Investigations by CBI (Operation Chakra-V) confirmed that analysis of 15,000+ IP addresses traced perpetrators to Cambodia; funds were withdrawn at overseas ATMs using Indian mule debit cards.</div>
+        <div class="step-tech"><strong>Tech Used:</strong> Full VPN + proxy stack used throughout; Telegram channels used for command-and-control; cryptocurrency mixers/tumblers for final obfuscation</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 6: MONEY TRAIL -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">§ 06</span>
+    <div>
+      <h2 class="section-title">Money Flow Map — Victim to Crime Syndicate</h2>
+      <p class="section-desc">Documented routing of fraudulently obtained funds from Indian victims to foreign crime networks</p>
+    </div>
+  </div>
+
+  <div style="background:var(--surface); border:1px solid var(--border); padding:28px; border-radius:4px; font-family:'IBM Plex Mono', monospace; font-size:12px; line-height:2; overflow-x:auto;">
+    <div style="color:var(--text-muted); margin-bottom:16px;">MONEY FLOW DIAGRAM — Based on I4C/CBI/MHA Official Findings</div>
+
+    <div style="display:flex; flex-direction:column; gap:0;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="background:rgba(232,93,38,0.1); border:1px solid rgba(232,93,38,0.4); color:var(--accent); padding:8px 16px; border-radius:2px; white-space:nowrap;">👤 INDIAN VICTIM</div>
+        <div style="color:var(--text-muted);">transfers funds via NEFT/RTGS/UPI</div>
+      </div>
+      <div style="color:var(--text-dim); margin-left:24px;">↓ [Proxy-masked remote access]</div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="background:rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.4); color:var(--accent2); padding:8px 16px; border-radius:2px; white-space:nowrap;">🏦 MULE ACCOUNT LAYER 1</div>
+        <div style="color:var(--text-muted);">Indian savings/current account, rented identity</div>
+      </div>
+      <div style="color:var(--text-dim); margin-left:24px;">↓ [Bulk payout API, within 10–30 mins]</div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="background:rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.4); color:var(--accent2); padding:8px 16px; border-radius:2px; white-space:nowrap;">🏦 MULE ACCOUNT LAYER 2–N</div>
+        <div style="color:var(--text-muted);">shell company accounts, fake NGOs, multiple hops</div>
+      </div>
+      <div style="color:var(--text-dim); margin-left:24px;">↓ [Parallel ATM withdrawals + crypto purchase]</div>
+      <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+        <div style="background:rgba(38,181,131,0.1); border:1px solid rgba(38,181,131,0.4); color:var(--green); padding:8px 16px; border-radius:2px; white-space:nowrap;">💸 CASH WITHDRAWAL</div>
+        <div style="background:rgba(38,136,232,0.1); border:1px solid rgba(38,136,232,0.4); color:#6ab4f5; padding:8px 16px; border-radius:2px; white-space:nowrap;">₿ CRYPTO (USDT/BTC)</div>
+        <div style="background:rgba(138,38,232,0.1); border:1px solid rgba(138,38,232,0.4); color:#b46af5; padding:8px 16px; border-radius:2px; white-space:nowrap;">💱 HAWALA NETWORK</div>
+      </div>
+      <div style="color:var(--text-dim); margin-left:24px;">↓ [VPN + proxy masked crypto transfer / physical courier]</div>
+      <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+        <div style="background:rgba(232,38,75,0.1); border:1px solid rgba(232,38,75,0.4); color:#f57ea0; padding:8px 16px; border-radius:2px;">🇨🇳 CHINA</div>
+        <div style="background:rgba(232,38,75,0.1); border:1px solid rgba(232,38,75,0.4); color:#f57ea0; padding:8px 16px; border-radius:2px;">🇰🇭 CAMBODIA</div>
+        <div style="background:rgba(232,38,75,0.1); border:1px solid rgba(232,38,75,0.4); color:#f57ea0; padding:8px 16px; border-radius:2px;">🇲🇲 MYANMAR</div>
+        <div style="background:rgba(232,38,75,0.1); border:1px solid rgba(232,38,75,0.4); color:#f57ea0; padding:8px 16px; border-radius:2px;">🇦🇪 UAE/Dubai</div>
+        <div style="background:rgba(232,38,75,0.1); border:1px solid rgba(232,38,75,0.4); color:#f57ea0; padding:8px 16px; border-radius:2px;">🇭🇰 Hong Kong</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: STATISTICS -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">§ 07</span>
+    <div>
+      <h2 class="section-title">India Cybercrime Statistics — Official Data</h2>
+      <p class="section-desc">Official government figures from MHA, I4C, and CBI 2024–2025</p>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">₹1.2L Cr</div>
+      <div class="stat-label">Projected 2025 cyber fraud losses (0.7% of GDP)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">₹11,333 Cr</div>
+      <div class="stat-label">Actual losses reported Jan–Sep 2024 (I4C)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">7,000/day</div>
+      <div class="stat-label">Complaints on NCRP portal by mid-2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4,000/day</div>
+      <div class="stat-label">Mule accounts identified daily by I4C (2024)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4.5 Lakh</div>
+      <div class="stat-label">Mule accounts frozen by I4C in 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">45%</div>
+      <div class="stat-label">2024 complaints traced to SE Asia (Cambodia, Myanmar, Laos)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">83,668</div>
+      <div class="stat-label">WhatsApp accounts blocked linked to digital arrest scams</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">11.14 Lakh</div>
+      <div class="stat-label">SIM cards blocked by GoI (till Oct 2025)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">₹7,130 Cr</div>
+      <div class="stat-label">Amount saved via CFCFRMS helpline (till Oct 2025)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">16,840</div>
+      <div class="stat-label">Accused arrested via I4C Pratibimb module</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">21x</div>
+      <div class="stat-label">Rise in digital arrest losses (2022 ₹91Cr → 2024 ₹1,935Cr)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">29,466</div>
+      <div class="stat-label">Indians traveled to Cambodia/Myanmar/Thailand/Vietnam and didn't return (Jan 2022–May 2024)</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px;">
+    <p><strong style="color:var(--blue)">📌 Source:</strong> All statistics sourced from official Government of India publications: PIB Press Release PRID:2205201, PIB Press Release PRID:2069000 (MHA/I4C), CBI Operation Chakra-V press release (Oct 2025), and I4C Annual Reports. See Section §9 for full references.</p>
+  </div>
+</section>
+
+<!-- SECTION 8: COUNTERMEASURES -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">§ 08</span>
+    <div>
+      <h2 class="section-title">Recommended Countermeasures for Government Authorities</h2>
+      <p class="section-desc">Technical, legal, and policy interventions to disrupt this fraud ecosystem</p>
+    </div>
+  </div>
+
+  <div class="remedy-grid">
+    <div class="remedy-card">
+      <div class="remedy-icon">🔍</div>
+      <div class="remedy-title">Proxy/VPN Detection at Banking Layer</div>
+      <div class="remedy-body">Mandate RBI-regulated banks and payment aggregators to deploy real-time IP intelligence APIs (from providers like MaxMind, Spur) to flag residential proxy and VPN connections at login/transaction time. Transactions originating from known proxy ranges should trigger enhanced authentication.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">🏛️</div>
+      <div class="remedy-title">Legal Notices to Proxy Companies</div>
+      <div class="remedy-body">Issue formal legal notices under MLAT (Mutual Legal Assistance Treaty) / Budapest Convention to proxy providers with known registration (NetNut/Israel, ProxyScrape/Belgium, Geonode/Singapore) demanding logs of Indian IP-range customers. Coordinate via I4C international desk and CBI Interpol unit.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">🚫</div>
+      <div class="remedy-title">Block Proxy Provider Domains at ISP Level</div>
+      <div class="remedy-body">DoT/TRAI to issue directions to Jio, Airtel, BSNL, Vi to block access to proxy provider control panels (711proxy.com, nstproxy.com etc.) from Indian residential ISP connections. This disrupts domestic-based mule operators from remotely receiving proxy configurations.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">🤝</div>
+      <div class="remedy-title">International Cooperation — MoU Expansion</div>
+      <div class="remedy-body">Expand I4C's existing MoU with US DHS (signed Jan 2025) to include UK, Israel, EU (to cover NetNut, ProxyScrape, Kape/ExpressVPN). Seek data preservation orders from Singapore authorities for Geonode logs. Activate INTERPOL I-24/7 channel for Cambodia/China requests.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">📱</div>
+      <div class="remedy-title">Mobile Carrier Behavioral Analysis</div>
+      <div class="remedy-body">Require TRAI-compliant telecom carriers to flag SIM cards that (a) activate multiple VoIP or forwarding services, (b) are registered to addresses not matching usage geozone, or (c) receive more than 50 outbound VOIP calls/day — classic indicators of SIM-box fraud used alongside proxies.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">🔐</div>
+      <div class="remedy-title">UPI / Fintech Device Binding</div>
+      <div class="remedy-body">RBI/NPCI should enforce device-fingerprint binding for UPI transactions above ₹50,000 — preventing proxy-masked remote account control. Implement behavioral biometrics (typing cadence, touch dynamics) to detect automated proxy-driven account operations.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">📊</div>
+      <div class="remedy-title">Mule Account Early Detection (AI)</div>
+      <div class="remedy-body">Banks should implement ML models trained on mule account behavioral patterns: rapid small deposits followed by bulk transfers, accounts active only during 2–6 AM IST (SE Asia business hours), and new accounts receiving large international remittances within 30 days of opening.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">📢</div>
+      <div class="remedy-title">Public Awareness — "No Digital Arrest"</div>
+      <div class="remedy-body">Continue and scale the MHA "CyberDost" awareness campaign. Key message: No legitimate law enforcement agency (CBI, ED, Police) will ever "digitally arrest" a citizen. Any such claim is a scam. Report immediately to Helpline 1930 or cybercrime.gov.in. Prime Minister Modi has already publicly addressed this issue.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">⚖️</div>
+      <div class="remedy-title">Prosecute Proxy Resellers in India</div>
+      <div class="remedy-body">Domestic agents who resell foreign proxy services to known fraudsters can be prosecuted under IT Act Section 66C (identity theft), 66D (cheating by personation), and PMLA Section 3 (money laundering). FIR registrations should specifically name proxy service misuse as a predicate offence.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">🛃</div>
+      <div class="remedy-title">SIM Card Export Control</div>
+      <div class="remedy-body">Ministry of Communications and Customs to establish strict protocols against bulk SIM card export. Build on existing seizures (198 SIM cards to Cambodia, 135 SIM cards seized in another case). Mandate e-KYC verification for any person activating more than 2 SIM cards in 30 days.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">₿</div>
+      <div class="remedy-title">Crypto Trail Analysis</div>
+      <div class="remedy-body">FIU-IND and ED to partner with crypto analytics firms (Chainalysis, Elliptic) to trace USDT/BTC flows from Indian mule accounts to Chinese/Cambodian wallets. VASP (Virtual Asset Service Provider) regulations under PMLA require crypto exchanges to report suspicious Indian-account-linked crypto purchases above ₹10,000.</div>
+    </div>
+    <div class="remedy-card">
+      <div class="remedy-icon">🌐</div>
+      <div class="remedy-title">Reporting & Emergency Resources</div>
+      <div class="remedy-body"><strong>Cybercrime Helpline: 1930</strong><br>Portal: cybercrime.gov.in<br>WhatsApp: 9151113558 (CyberDost)<br>Twitter/X: @CyberDost<br>State Cyber Cells: cybercrime.gov.in/Webform/Crime_NodalGrivanceList.aspx<br>e-Zero FIR auto-registered for losses above ₹10 lakh.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: REFERENCES -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">§ 09</span>
+    <div>
+      <h2 class="section-title">Official References & Source Links</h2>
+      <p class="section-desc">All sources verified and publicly accessible as of April 2026</p>
+    </div>
+  </div>
+
+  <table class="ref-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Organization</th>
+        <th>Document / Source</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="ref-org">MHA / I4C (India)</td><td>Alert on illegal payment gateways & mule accounts (PIB, Oct 2024)</td><td><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2069000" target="_blank">pib.gov.in/PressReleasePage.aspx?PRID=2069000</a></td></tr>
+      <tr><td>2</td><td class="ref-org">MHA / I4C (India)</td><td>Cyber Security and Financial Fraud Combat – I4C Overview (PIB, Dec 2025)</td><td><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2205201" target="_blank">pib.gov.in/PressReleasePage.aspx?PRID=2205201</a></td></tr>
+      <tr><td>3</td><td class="ref-org">CBI (India)</td><td>Operation Chakra-V – Digital Arrest Fraud Crackdown (Oct 2025)</td><td><a href="https://www.newkerala.com/news/o/operation-chakra-v-cbi-conducts-nationwide-searches-40-locations-digital-577" target="_blank">newkerala.com (CBI Operation Chakra-V)</a></td></tr>
+      <tr><td>4</td><td class="ref-org">Business Standard</td><td>MHA warns of cybercriminals using mule accounts for money laundering</td><td><a href="https://www.business-standard.com/india-news/mha-warns-of-cybercriminals-using-mule-accounts-for-money-laundering-124102801053_1.html" target="_blank">business-standard.com</a></td></tr>
+      <tr><td>5</td><td class="ref-org">The Prayas India</td><td>Digital Arrest Scams & MHA Action — I4C Data Analysis</td><td><a href="https://theprayasindia.com/digital-arrest-scams-mha-action/" target="_blank">theprayasindia.com</a></td></tr>
+      <tr><td>6</td><td class="ref-org">Drishti IAS</td><td>Cyberfraud Costs 0.7% of GDP — I4C Analysis</td><td><a href="https://www.drishtiias.com/daily-updates/daily-news-analysis/cyberfraud-costs-0-7-of-gdp" target="_blank">drishtiias.com</a></td></tr>
+      <tr><td>7</td><td class="ref-org">63SATS Cybertech</td><td>Cyber Fraud Hits India Hard: ₹11,333 Crore Lost in 2024</td><td><a href="https://63sats.com/blog/cyber-fraud-hits-india-hard-11333-crore-lost-in-2024-gdp-at-risk" target="_blank">63sats.com</a></td></tr>
+      <tr><td>8</td><td class="ref-org">The420.in</td><td>₹58 Crore Digital Arrest Scam — Maharashtra Cyber Investigation</td><td><a href="https://the420.in/digital-arrest-scam-58-crore-fraud-mule-accounts-maharashtra-cyber/" target="_blank">the420.in</a></td></tr>
+      <tr><td>9</td><td class="ref-org">Bold News</td><td>8,000 Mule Accounts Frozen in J&K — China/Cambodia Links</td><td><a href="https://boldnewsonline.com/over-8000-mule-accounts-frozen-in-j-massive-digital-money-laundering-racket-unearthed/" target="_blank">boldnewsonline.com</a></td></tr>
+      <tr><td>10</td><td class="ref-org">arxiv.org (Academic)</td><td>Cyber Slavery Infrastructures: Transnational Cybercrime Study (2025)</td><td><a href="https://arxiv.org/html/2510.12814v1" target="_blank">arxiv.org/html/2510.12814v1</a></td></tr>
+      <tr><td>11</td><td class="ref-org">Crunchbase</td><td>711Proxy Company Profile</td><td><a href="https://www.crunchbase.com/organization/711proxy" target="_blank">crunchbase.com/organization/711proxy</a></td></tr>
+      <tr><td>12</td><td class="ref-org">LinkedIn</td><td>NetNut Company Profile — Tel Aviv, Israel</td><td><a href="https://www.linkedin.com/company/netnut" target="_blank">linkedin.com/company/netnut</a></td></tr>
+      <tr><td>13</td><td class="ref-org">Crunchbase</td><td>ProxyScrape Company Profile — Mechelen, Belgium</td><td><a href="https://www.crunchbase.com/organization/proxyscrape" target="_blank">crunchbase.com/organization/proxyscrape</a></td></tr>
+      <tr><td>14</td><td class="ref-org">NetNut Official</td><td>NetNut About Page — Headquarters & History</td><td><a href="https://netnut.io/about/" target="_blank">netnut.io/about/</a></td></tr>
+      <tr><td>15</td><td class="ref-org">Wikipedia</td><td>ExpressVPN — Company History, Kape Technologies Acquisition</td><td><a href="https://en.wikipedia.org/wiki/ExpressVPN" target="_blank">en.wikipedia.org/wiki/ExpressVPN</a></td></tr>
+      <tr><td>16</td><td class="ref-org">Scrapingproxies.best</td><td>Geonode Review — Singapore HQ, Repocket/Zenshield Partners</td><td><a href="https://scrapingproxies.best/providers/geonode/" target="_blank">scrapingproxies.best/providers/geonode/</a></td></tr>
+      <tr><td>17</td><td class="ref-org">Trustpilot</td><td>711Proxy Reviews — Registered Address Verification</td><td><a href="https://www.trustpilot.com/review/711proxy.com" target="_blank">trustpilot.com/review/711proxy.com</a></td></tr>
+      <tr><td>18</td><td class="ref-org">National Cybercrime Reporting Portal</td><td>Official Government of India Cybercrime Reporting</td><td><a href="https://cybercrime.gov.in" target="_blank">cybercrime.gov.in</a></td></tr>
+      <tr><td>19</td><td class="ref-org">Mangopay</td><td>How Fraudsters Use VPNs and Proxies — Technical Analysis</td><td><a href="https://blog.mangopay.com/en/home/how-to-get-precise-fraud-detection-with-a-proxies-and-vpn-detection-tool" target="_blank">blog.mangopay.com</a></td></tr>
+      <tr><td>20</td><td class="ref-org">ZoomInfo</td><td>ProxyScrape — Brugstraat 18, Mechelen Belgium</td><td><a href="https://www.zoominfo.com/c/proxyscrape/1295927140" target="_blank">zoominfo.com/c/proxyscrape</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="footer-text">📋 Research Report — Open Source Intelligence Compilation | April 2026</div>
+  <div class="footer-text">For use by: Government of India Law Enforcement, I4C, CBI, ED, RBI Fraud Units, State Cyber Cells</div>
+  <div class="footer-text">Emergency: Cybercrime Helpline <strong style="color:var(--accent)">1930</strong> | cybercrime.gov.in</div>
+</footer>
+
+</body>
+</html>
